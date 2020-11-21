@@ -4,6 +4,8 @@
 
 This project shows you how you can catch a webhook in your Node.js Backend. It is built with [express](https://www.npmjs.com/package/express), [body-parser](https://www.npmjs.com/package/body-parser) and [cors](https://www.npmjs.com/package/cors).
 
+Furthermore, we also show you how you can decrypt a webhook in the `webhookController`.
+
 ## Installation
 
 Please run the following command inside this projects directory in terminal:
@@ -33,6 +35,10 @@ For local development, you can use a service like e.g [ngrok](https://ngrok.com/
 `https://739ca52d057d.ngrok.io/passbase-webhooks`
 
 Now you are able to receive events on this endpoint. If you deploy this server to a hosting service, your webhook endpoint will be `YOUR_SERVER_ADDRESS/passbase-webhooks`
+
+### Handling Encrypted Webhooks
+
+If you are using encryption for your webhooks, please navigate to the file `webhookController.js` and add your webhook secret in line 8 for `YOUR_WEBHOOK_SECRET`.
 
 ## Contributing
 

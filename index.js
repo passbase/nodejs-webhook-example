@@ -1,27 +1,32 @@
-const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const express = require("express");
+const webhookHelper = require("./webhookController");
 const app = express();
 const port = 5000;
 
 app.use(bodyParser.json());
+app.use(bodyParser.text());
 app.use(cors());
 
-app.post("/passbase-webhooks", (req, res) => {
-  const data = req.body;
-  console.log(data);
+const processWebhook = (request) => {
+  const webhook = webhookHelper.decryptWebhookIfNeeded(request);
+  console.log(webhook);
 
-  switch (data.event) {
-    case "AUTHENTICATION_PROCESSED":
-      console.log("AUTHENTICATION_PROCESSED");
-      // Do logic here for AUTHENTICATION_PROCESSED event
+  switch (webhook.event) {
+    case "VERIFICATION_COMPLETED":
+      // Do logic here for VERIFICATION_COMPLETED event
       break;
-    case "AUTHENTICATION_REVIEW_STATUS_CHANGED":
-      // Do logic here for AUTHENTICATION_REVIEW_STATUS_CHANGED event
+    case "VERIFICATION_REVIEWED":
+      // Do logic here for VERIFICATION_REVIEWED event
       break;
     default:
       console.log("Couldn't process webhook event");
   }
+};
+
+app.post("/passbase-webhooks", (req, res) => {
+  processWebhook(req);
   res.status(200).send("Success");
 });
 
