@@ -1,4 +1,4 @@
-![alt text](https://passbase.com/assets-v2/images/meta.jpg "Passbase Header")
+![alt text](https://i.imgur.com/cOj85Lg.jpg "Passbase Header")
 
 # Passbase Webhook Server Example
 
